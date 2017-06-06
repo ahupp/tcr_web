@@ -1,7 +1,7 @@
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     window.location = 'home';
-  } 
+  }
 });
 
 
@@ -22,7 +22,7 @@ $("#loginBtn").click(
         var errorCode = error.code;
         var errorMessage = error.message;
         console.log("errror");
-
+        document.getElementById("loginError").innerHTML = "error";
         $("#loginError").show().text(errorMessage);
         //$("#loginProgress").hide();
         //$("#loginBtn").show();

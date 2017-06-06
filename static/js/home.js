@@ -51,7 +51,7 @@ function displayActiveUserTasks(activeUserTasks,id) {
   var nameToAdd = activeUserTasks["Participant Name"];
   var coachName = "Coach: " + activeUserTasks["Coach Name"];
   //set up heading with user name and coach name
-  var pageHeading = "<hr><h5>" + coachName + "</h5>";
+  var pageHeading = "<h5>" + coachName + "</h5><hr>";
   document.getElementById("heading").innerHTML  = pageHeading;
   var layout = activeUserTasks["layout"];
   var headings = {};
