@@ -104,6 +104,7 @@ tags = {"Foundations", "Training  Goals", "Employment Activity Goals", "Employed
 def upload_new_participant_data(filename):
     new_participant = participant_data_to_json(os.path.join(UPLOAD_FOLDER, filename))
     os.remove(os.path.join(UPLOAD_FOLDER, filename))
+    print "removed"
     new_user = {}
     new_user["Participant Name"] = new_participant["Participant Name"]
     new_user["Coach Name"] = new_participant["Coach Name"]
@@ -115,9 +116,11 @@ def upload_new_participant_data(filename):
         if 'Participant Name' in users[key] and users[key]['Participant Name'] == new_participant["Participant Name"]:
             return False
 
+    print "uploading"
     result = firebaseRef.post('/users', new_user)
 
     firebaseRef.put('/tasks', result['name'], new_participant)
+    print "returning"
     return True
 
 def get_participant_key(users, name):

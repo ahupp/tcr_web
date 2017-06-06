@@ -29,6 +29,7 @@ def allowed_file(filename):
 
 @app.route('/new_idp', methods=['POST'])
 def new_idp(): 
+	print "entered"
 	if 'file' in request.files:
 		file = request.files['file']
 		if file.filename == '':
@@ -37,6 +38,8 @@ def new_idp():
 		if file and allowed_file(file.filename):
 			filename = secure_filename(file.filename)
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+			print "uploaded"
+
 
 			#participant already exists
 			if not parsefile.upload_new_participant_data(filename):
