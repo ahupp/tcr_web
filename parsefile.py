@@ -103,7 +103,7 @@ tags = {"Foundations", "Training  Goals", "Employment Activity Goals", "Employed
 
 def upload_new_participant_data(filename):
     new_participant = participant_data_to_json(os.path.join(UPLOAD_FOLDER, filename))
-    os.remove(os.path.join(UPLOAD_FOLDER, filename))
+    #os.remove(os.path.join(UPLOAD_FOLDER, filename))
     print "removed"
     new_user = {}
     new_user["Participant Name"] = new_participant["Participant Name"]
@@ -132,7 +132,7 @@ def get_participant_key(users, name):
 
 def update_participant_data(filename):
     participant = participant_data_to_json(os.path.join(UPLOAD_FOLDER, filename))
-    os.remove(os.path.join(UPLOAD_FOLDER, filename))
+    #os.remove(os.path.join(UPLOAD_FOLDER, filename))
     user = {}
     user["Participant Name"] = participant["Participant Name"]
     user["Coach Name"] = participant["Coach Name"]
