@@ -9,7 +9,7 @@ import datetime
 import os
 from firebase import firebase
 
-UPLOAD_FOLDER = 'uploads/'
+UPLOAD_FOLDER = 'tmp/'
 
 def populate_tag(start, df):
     tagInfo = {}

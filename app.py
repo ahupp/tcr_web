@@ -3,7 +3,7 @@ import parsefile
 from flask import Flask, render_template, request, redirect, url_for
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = 'static/uploads/'
+UPLOAD_FOLDER = 'tmp/'
 ALLOWED_EXTENSIONS = set(['xlsx', 'csv'])
 
 
@@ -30,6 +30,9 @@ def allowed_file(filename):
 @app.route('/new_idp', methods=['POST'])
 def new_idp(): 
 	print "entered"
+	if not os.path.exists('tmp/'):
+		os.mkdir('tmp/')
+		print "made dir"
 	if 'file' in request.files:
 		file = request.files['file']
 		if file.filename == '':
