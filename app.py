@@ -36,6 +36,7 @@ def new_idp():
 			flash('No selected file')
 			return redirect ("/home")
 		if file and allowed_file(file.filename):
+			print "trying to upload"
 			filename = secure_filename(file.filename)
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 			print "uploaded"
@@ -44,8 +45,6 @@ def new_idp():
 			if not parsefile.upload_new_participant_data(filename):
 				error = 'Participant already exists. To update their data, use the update data button.'
 				return render_template("home.html", error = error)
-	else:
-		print "no files"
 	return redirect(url_for('home'))
     
 @app.route('/update_idp', methods=['POST'])
