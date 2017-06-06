@@ -29,31 +29,28 @@ def allowed_file(filename):
 
 @app.route('/new_idp', methods=['POST'])
 def new_idp(): 
-	print "entered"
 	if not os.path.exists('tmp/'):
 		os.mkdir('tmp/')
-		print "made dir"
 	if 'file' in request.files:
 		file = request.files['file']
 		if file.filename == '':
 			flash('No selected file')
 			return redirect ("/home")
 		if file and allowed_file(file.filename):
-			print "trying to upload"
 			filename = secure_filename(file.filename)
-			print "trying to upload" + filename
 
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-			print "uploaded"
 
 			#participant already exists
-			if not parsefile.upload_new_participant_data(filename):
+			if not parsefile.upload_new_participant_data(os.path.join(app.config['UPLOAD_FOLDER'], filename)):
 				error = 'Participant already exists. To update their data, use the update data button.'
 				return render_template("home.html", error = error)
 	return redirect(url_for('home'))
     
 @app.route('/update_idp', methods=['POST'])
 def update_idp():
+	if not os.path.exists('tmp/'):
+		os.mkdir('tmp/')
 	if 'file' in request.files:
 		file = request.files['file']
 		if file.filename == '':
@@ -63,7 +60,7 @@ def update_idp():
 			filename = secure_filename(file.filename)
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-			parsefile.update_participant_data(filename)
+			parsefile.update_participant_data(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
 	return redirect(url_for('home'))
 

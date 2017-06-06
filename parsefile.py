@@ -9,7 +9,6 @@ import datetime
 import os
 from firebase import firebase
 
-UPLOAD_FOLDER = 'tmp/'
 
 def populate_tag(start, df):
     tagInfo = {}
@@ -102,7 +101,7 @@ def participant_data_to_json(filename):
 tags = {"Foundations", "Training  Goals", "Employment Activity Goals", "Employed Participants"}
 
 def upload_new_participant_data(filename):
-    new_participant = participant_data_to_json(os.path.join(UPLOAD_FOLDER, filename))
+    new_participant = participant_data_to_json(filename)
     #os.remove(os.path.join(UPLOAD_FOLDER, filename))
     print "removed"
     new_user = {}
@@ -131,7 +130,7 @@ def get_participant_key(users, name):
 
 
 def update_participant_data(filename):
-    participant = participant_data_to_json(os.path.join(UPLOAD_FOLDER, filename))
+    participant = participant_data_to_json(filename)
     #os.remove(os.path.join(UPLOAD_FOLDER, filename))
     user = {}
     user["Participant Name"] = participant["Participant Name"]
