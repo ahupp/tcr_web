@@ -38,6 +38,8 @@ def new_idp():
 		if file and allowed_file(file.filename):
 			print "trying to upload"
 			filename = secure_filename(file.filename)
+			print "trying to upload" + filename
+
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 			print "uploaded"
 
