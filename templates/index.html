@@ -1,0 +1,77 @@
+<!doctype html>
+
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Twin Cities Rise</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="static/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="static/css/style.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 50px;
+        padding-bottom: 20px;
+      }
+    </style>
+</head>
+
+
+<body style="background-color: #673ab7">
+
+<!--Modal: Login -->
+
+<div class="modal.show" id="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Body-->
+      <div class="modal-body mb-1">
+        <div id="wrapper" style="width:100%; text-align:center">
+          <img src="static/img/tcrlogo.png">
+        </div>
+        <form action="#">
+          <div class="md-form">
+            <input placeholder="Email..." type="text" id="loginEmail" class="form-control">
+          </div>
+          <div class="md-form">
+            <input placeholder="Password..." type="password" id="loginPassword" class="form-control">
+          </div>
+        </form>
+      </div>
+      <!--Footer-->
+      <div class="modal-footer display-footer">
+        <button class="btn btn-deep-purple" id ="loginBtn">Log in </button>
+      </div>
+    </div>
+  </div>
+</div>
+  <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
+  <script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAtjGKuqLd2m9q0SU1KTzwkcTPanW9cITA",
+    authDomain: "twincitiesrise2.firebaseapp.com",
+    databaseURL: "https://twincitiesrise2.firebaseio.com",
+    projectId: "twincitiesrise2",
+    storageBucket: "twincitiesrise2.appspot.com",
+    messagingSenderId: "357492294050"
+  };
+  firebase.initializeApp(config);
+  </script>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="static/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+  <script src="static/js/vendor/tether.min.js"></script>
+  <script src="static/js/vendor/bootstrap.min.js"></script>
+
+  <script data-main ="static/js/main.js" src="static/js/require.js"> </script>
+</body>
+</html>

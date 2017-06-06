@@ -1,0 +1,4 @@
+xlrd==1.0.0
+Flask==0.12
+requests==1.1.0
+python-firebase==1.2

@@ -1,0 +1,163 @@
+<!doctype html>
+
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title>Twin Cities Rise</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+  <!-- Bootstrap core CSS -->
+  <link href="static/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="static/css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="static/css/style.css" rel="stylesheet">
+  <style>
+  body {
+    padding-top: 70px;
+    padding-bottom: 20px;
+  }
+    .tables-lined-up {
+        display:inline-block;
+    }
+  </style>
+
+</head>
+
+
+<body>
+
+  <nav class="navbar fixed-top navbar-toggleable scrolling-navbar deep-purple ">
+
+    <div class="container">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <a class="navbar-brand white-text" href="home">Twin Cities Rise</a>
+
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+          <li class="nav-item dropdown btn-group">
+            <a class="nav-link dropdown-toggle white-text" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Upload</a>
+            <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
+              <a data-toggle="modal" data-target="#newUser"class="dropdown-item">New user IDP</a>
+              <a data-toggle="modal" data-target="#updateUser"class="dropdown-item">Update existing IDP</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a id="logoutBtn"class="nav-link waves-effect waves-light white-text"> Sign out</a>
+          </li>
+        </ul>
+    </div>
+  </nav>
+  {% if error %}
+  <p class=error><strong>Error:</strong> {{ error }}
+    {% endif %}
+
+    <div  class="container">
+      <div  class="row">
+        <div class="col-md-3">
+          <h2>Users</h2>
+            <input type="text" class="form-control" id="myInput" onkeyup="filter()" placeholder="Search for names..">
+        </div>
+        <div class="col-md-9">
+          <h2 id ="nameHead"> IDP </h2>
+          <div id="heading">
+            <hr>
+            <p> Click a user to display and edit their IDP. </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+      <div class="col-md-3">
+        <div id ="userList" class="list-group "></div>
+      </div>
+      <div class="col-md-9">
+          <div id="tablesToAdd">
+          </div>
+        </div>
+        </div>
+
+        <!-- Upload New IDP Modal -->
+        <div class="modal fade" id="newUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title w-100" id="myModalLabel">Upload New User IDP</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="{{ url_for('new_idp') }}" method=POST enctype=multipart/form-data>
+                  <h5 class="text-muted" >Upload File</h5>
+                  <input type="file" name="file">
+                  <div class="modal-footer">
+                    <input type="submit" class="btn btn-deep-purple lighten-1" value="Upload">
+                    <p id="done"> </p>
+
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Update New IDP Modal -->
+        <div class="modal fade" id="updateUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title w-100" id="myModalLabel">Update User IDP</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="{{ url_for('update_idp') }}" method=POST enctype=multipart/form-data>
+                    <h5 class="text-muted" >Upload File</h5>
+                  <input type="file" name="file">
+                  <div class="modal-footer">
+                    <input type="submit" class="btn btn-deep-purple lighten-1" value="Upload">
+                    <p id="done"> </p>
+
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+    <hr>
+    <footer>
+      <p>&copy; Twin Cities Rise 2017</p>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/3.8.0/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAtjGKuqLd2m9q0SU1KTzwkcTPanW9cITA",
+      authDomain: "twincitiesrise2.firebaseapp.com",
+      databaseURL: "https://twincitiesrise2.firebaseio.com",
+      projectId: "twincitiesrise2",
+      storageBucket: "twincitiesrise2.appspot.com",
+      messagingSenderId: "357492294050"
+    };
+    firebase.initializeApp(config);
+    </script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="static/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+    <script src="static/js/vendor/bootstrap.min.js"></script>
+    <script type="text/javascript" src="static/vendor/js/mdb.min.js"></script>
+
+    <script data-main ="static/js/home.js" src="static/js/require.js"> </script>
+  </body>
+  </html>
